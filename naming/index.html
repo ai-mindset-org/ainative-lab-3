@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIN3 · naming convention</title>
+<meta name="description" content="Конвенция имён AIN3: имя файла как первый индекс. Грамматика, три контура, словарь типов, анти-паттерны, мета-правило.">
+<meta property="og:title" content="AIN3 · naming convention">
+<meta property="og:description" content="Имя файла – первый индекс системы: грамматика, три контура, анти-паттерны, мета-правило.">
+<meta property="og:image" content="https://ai-mindset-org.github.io/ainative-lab-3/assets/web-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../assets/aim-logo.png">
+<style>
+:root{--paper:#f2f0e9;--ink:#0b0b0b;--muted:#6d6b64;--line:#d8d5cc;--red:#d22;--red2:#ff4c43;
+--mono:"SFMono-Regular","Roboto Mono",Menlo,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--mono);-webkit-font-smoothing:antialiased;
+background-image:linear-gradient(rgba(11,11,11,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(11,11,11,.04) 1px,transparent 1px);
+background-size:48px 48px}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px 80px}
+header{display:flex;align-items:center;gap:12px;padding:20px 0;border-bottom:1px solid var(--ink);margin-bottom:40px}
+header img{width:34px;height:34px}
+header .t{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+header .t b{color:var(--red)}
+header nav{margin-left:auto;display:flex;gap:0}
+header nav a{border:1px solid var(--ink);padding:8px 12px;margin-left:-1px;font-size:9px;letter-spacing:.14em;
+text-transform:uppercase;text-decoration:none;color:var(--ink)}
+header nav a:hover{background:var(--ink);color:var(--paper)}
+.kicker{color:var(--red);font-size:10px;letter-spacing:.22em;text-transform:uppercase;margin:40px 0 10px}
+h1{font-size:clamp(34px,6vw,58px);line-height:.98;letter-spacing:-.03em;margin:0 0 16px;font-weight:600}
+h1 span{color:var(--red)}
+.lede{color:var(--muted);font-size:13px;line-height:1.7;max-width:60ch}
+.formula{margin:36px 0;padding:26px 22px;background:var(--ink);color:var(--paper);font-size:clamp(14px,2.6vw,22px);
+overflow-x:auto;white-space:nowrap}
+.formula i{font-style:normal}
+.formula .p{color:#7ab8ff}.formula .ty{color:var(--red2)}.formula .d{color:#f2f0e9}.formula .dt{color:#cac6bb}
+h2{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin:52px 0 16px;
+padding-top:18px;border-top:1px solid var(--ink)}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));border:1px solid var(--ink)}
+.rule{padding:16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rule b{display:block;font-size:12px;margin-bottom:6px}
+.rule span{color:var(--muted);font-size:10px;line-height:1.6}
+.tabs{display:flex;margin-bottom:-1px}
+.tab{border:1px solid var(--ink);background:transparent;padding:10px 16px;margin-right:-1px;cursor:pointer;
+font:inherit;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.examples{border:1px solid var(--ink);padding:6px 0;background:rgba(255,255,255,.5)}
+.ex{display:block;padding:9px 16px;font-size:12px;border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+.ex:last-child{border-bottom:0}
+.ex .p{color:#2266cc}.ex .ty{color:var(--red)}.ex .dt{color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:var(--ink);color:var(--paper);font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink)}
+.ba div{padding:12px 14px;font-size:11px;border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
+.ba .bad{color:var(--muted);text-decoration:line-through;border-right:1px solid var(--line)}
+.ba .good{color:var(--ink)}
+.ba .good::before{content:"→ ";color:var(--red)}
+ol.meta{padding-left:20px;font-size:12px;line-height:1.9;color:var(--ink)}
+ol.meta b{color:var(--red)}
+.foot{margin-top:60px;padding-top:16px;border-top:1px solid var(--ink);display:flex;gap:16px;flex-wrap:wrap;
+color:var(--muted);font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+.foot a{color:var(--ink)}
+@media(max-width:640px){.ba{grid-template-columns:1fr}.ba .bad{border-right:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <img src="../assets/aim-logo.png" alt="AI Mindset">
+  <span class="t">AI MINDSET · <b>AIN3</b> · NAMING</span>
+  <nav>
+    <a href="../">hub</a>
+    <a href="../starter-pack/naming/">builder</a>
+    <a href="https://github.com/ai-mindset-org/ainative-lab-3/blob/main/naming-convention.md">md</a>
+  </nav>
+</header>
+
+<div class="kicker">// FILENAME AS INDEX · HUMAN + AGENT + GIT</div>
+<h1>имя файла –<br><span>первая ось системы</span></h1>
+<p class="lede">человек сканирует папку глазами, агент делает grep, git держит историю – все трое читают один адрес. конвенция дешевле всего в первый день и дороже всего на тысячном файле.</p>
+
+<div class="formula"><i class="p">{project}</i> <i class="ty">{type}</i> <i class="d">description</i> <i class="dt">– YYYY-MM-DD</i><i>.ext</i></div>
+
+<h2>01 · жёсткие правила</h2>
+<div class="rules">
+  <div class="rule"><b>дата в конце</b><span>дата в начале ломает группировку по проекту; в середине не парсится глазами</span></div>
+  <div class="rule"><b>en-dash (–) перед датой</b><span>U+2013, Mac: Option + «-». длинное тире запрещено во всей системе</span></div>
+  <div class="rule"><b>имя латиницей</b><span>содержимое на любом языке, адрес – английский: URL, git и шаринг без сюрпризов</span></div>
+  <div class="rule"><b>forward-only</b><span>новые файлы по правилу, старые не переименовываются массово – ломаются ссылки</span></div>
+</div>
+
+<h2>02 · три контура · живые примеры</h2>
+<div class="tabs" role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-t="personal">personal</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="team">team</button>
+  <button class="tab" role="tab" aria-selected="false" data-t="model">model-data</button>
+</div>
+<div class="examples" id="ex"></div>
+
+<h2>03 · словарь типов для старта</h2>
+<table>
+<tr><th>тип</th><th>что это</th><th>ключевое свойство</th></tr>
+<tr><td>{brief}</td><td>operating brief процесса</td><td>trigger · inputs · output · owner · DoD</td></tr>
+<tr><td>{transcript}</td><td>сырой источник</td><td>append-only, не редактируется</td></tr>
+<tr><td>{analysis}</td><td>разбор, выводы</td><td>ссылается на источники</td></tr>
+<tr><td>{rule}</td><td>правило системы</td><td>живёт долго, обновляется</td></tr>
+<tr><td>{handoff}</td><td>передача между сессиями</td><td>5–7 строк: состояние + следующий шаг</td></tr>
+<tr><td>{process}</td><td>living how-to</td><td>правится вместе с процессом, поле updated</td></tr>
+<tr><td>{decision}</td><td>снапшот решения (ADR)</td><td>неизменяем после принятия – новый файл ссылается на старый</td></tr>
+<tr><td>{research}</td><td>исследование</td><td>source ledger внутри</td></tr>
+</table>
+
+<h2>04 · анти-паттерны · до → после</h2>
+<div class="ba">
+  <div class="bad">Untitled 14.md</div><div class="good">{ain3} {notes} kickoff questions – 2026-07-13.md</div>
+  <div class="bad">отчет_финал_2 (1).md</div><div class="good">{crm} {report} q2 pipeline – 2026-07-01.md</div>
+  <div class="bad">2026-07-14 встреча.md</div><div class="good">{team} {meeting} sprint planning – 2026-07-14.md</div>
+  <div class="bad">Обновление обвязки.md</div><div class="good">{AIM} {research} harness refresh – 2026-05-30.md</div>
+</div>
+
+<h2>05 · как завести свою – за 30 минут</h2>
+<ol class="meta">
+  <li><b>один процесс</b> – выпиши 10 последних файлов вокруг него;</li>
+  <li><b>3–5 кодов проекта</b> – по числу контуров, где реально живут файлы;</li>
+  <li><b>5–8 типов</b> – по жизненному циклу (что правится, что append-only, что неизменяемо);</li>
+  <li><b>грамматика в router</b> – правило работает, когда агент читает его до первой задачи;</li>
+  <li><b>новый код/тип добавляется в конвенцию в момент появления</b> – она сама living-документ.</li>
+</ol>
+<p class="lede">проверка качества: незнакомый человек или свежая сессия агента по одному ls понимает, что в папке и с чего начать.</p>
+
+<div class="foot">
+  <a href="../starter-pack/naming/">live builder →</a>
+  <a href="https://github.com/ai-mindset-org/ainative-lab-3/blob/main/naming-convention.md">полный текст (md) →</a>
+  <a href="../graph/">graph →</a>
+  <span>ai mindset · ain3</span>
+</div>
+</div>
+
+<script>
+const DATA={
+ personal:[
+  ['{self}','{rule}','morning routine','2026-07-01','.md'],
+  ['{self}','{transcript}','weekly reflection','2026-07-08','.md'],
+  ['{channel}','{article}','ain3 personal invite','2026-07-11','.md'],
+  ['{self}','{handoff}','context-compact deck prep','2026-07-14','.md'],
+  ['{focus}','{visual}','daily focus session one','2026-07-13','.png']],
+ team:[
+  ['{AIM}','{program}','AI-Native Sprint III Weekly Plan v1','2026-06-18','.md'],
+  ['{AIM}','{analysis}','AIN03 Lab Data Snapshot','2026-07-10','.md'],
+  ['{AIM}','{guide}','AIN03 W1 Personal Setup Run-of-Show','2026-07-13','.md'],
+  ['{AIM}','{decision}','on-demand participants snapshot','2026-07-10','.md'],
+  ['{AIM}','{crm}','AIN03 Speakers','2026-06-10','.md']],
+ model:[
+  ['rollout','session','2026-07-14T02-15-32-<uuid>','','.jsonl'],
+  ['{ain3}','{labs dataflow}','roster','2026-07-10','.md'],
+  ['evidence','log','append-only journal','','.md'],
+  ['graph','data','manifest','','.json'],
+  ['analytics','export','attendance minutes','2026-07-12','.parquet']]
+};
+const ex=document.getElementById('ex');
+function render(k){
+  ex.innerHTML=DATA[k].map(([p,t,d,dt,e])=>
+    `<code class="ex"><span class="p">${p}</span> <span class="ty">${t}</span> ${d}${dt?` <span class="dt">– ${dt}</span>`:''}<span class="dt">${e}</span></code>`).join('');
+}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));
+  b.setAttribute('aria-selected','true');render(b.dataset.t);
+}));
+render('personal');
+</script>
+</body>
+</html>

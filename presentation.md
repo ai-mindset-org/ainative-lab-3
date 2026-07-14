@@ -1,41 +1,49 @@
 # Presentation – структура деки и карта хранения
 
-> AIN3 · W1 · «мой персональный harness» · 14.07.2026, 17:00 CET.
+> AIN3 · W1 · «мой персональный harness» · 14.07.2026, 17:00 CET. Спайн актуален на 15:30 14.07 (26 секций); дека живая – сверяй счётчик в футере деки.
 
 ## Где хранится
 
 | Слой | Адрес | Роль |
 |---|---|---|
 | Публичная дека | https://ai-mindset-org.github.io/ainative-deck/decks/ain3-personal-setup/ | версия для участников, GitHub Pages |
-| Репозиторий деки | https://github.com/ai-mindset-org/ainative-deck | источник, ветка main, история версий в git log |
+| Репозиторий деки | https://github.com/ai-mindset-org/ainative-deck | источник, ветка main, история в git log |
 | Starter pack | https://github.com/ai-mindset-org/ainative-deck/tree/main/ain3-starter-pack | переносимый participant kit + ZIP |
 | Хаб лабы | https://ai-mindset-org.github.io/ainative-lab-3/ | этот репозиторий: graph · naming · rules · pack |
 | LMS | https://learn.aimindset.org/ain3 | записи и материалы потока |
 
 Локальная сборка идёт в git-worktree с live-preview; правки со сцены (режим E) сохраняются через локальный save-server прямо в git – презентация сама живёт по правилам harness: адрес, история, след.
 
-## Спайн деки – 18 секций
+## Спайн деки – 26 секций
 
-| # | Секция | Зона harness |
+| # | Секция | Зона |
 |---|---|---|
-| 1 | мой персональный harness – договорённости и след | рамка |
-| 2 | six working zones: context · memory · guardrail · review · naming · communication | рамка |
-| 3 | operating agreements – сначала договариваемся | agreements |
-| 4 | naming · live filename builder (personal / team / model-data) | naming |
-| 5 | storage roles – format follows role (.md / .jsonl / .parquet / .sqlite) | naming |
-| 6 | M1 handoff – один бриф от утренней практики | мост |
-| 7 | process route – кликабельный контур процесса | context |
-| 8 | context compiler – raw sources → selected context | context |
-| 9 | memory scopes – окно vs долгие хранилища | memory |
-| 10 | registry before governance – видимость агентов | guardrail |
-| 11 | agent passport – owner · scope · limits · revoke | guardrail |
-| 12 | AGENTS.md / CLAUDE.md – конституция проекта | context |
-| 13 | SKILL.md – процедурная память | memory |
-| 14 | eval loop – review · signal · replay | review |
-| 15 | first diagnostic run – run · inspect · correct | review |
-| 16 | custom graph – один видимый контур | карта |
-| 17 | live work · 12 минут – сборка вокруг своего брифа | практика |
-| 18 | transfer protocol – continuity · assess → transfer | передача |
+| 1 | мой персональный harness – от личного контекста к ACME World | рамка |
+| 2 | dragon power · relational protocol – context · rights · evidence | рамка |
+| 3 | six working zones: context · memory · guardrail · review · naming · communication | рамка |
+| 4 | operating agreements – сначала договариваемся | agreements |
+| 5 | naming · live filename builder (ACME / personal / team / model-data) | naming |
+| 6 | storage roles – format follows role (.md / .jsonl / .parquet / .sqlite) | naming |
+| 7 | ACME process brief – Denis M1 · weekly launch update | мост |
+| 8 | custom Obsidian /World – transcript → 4 spaces → 5 bridges | context |
+| 9 | ACME World package – people · process · sources · rules · state · metric | context |
+| 10 | selected personal context – мой context-map (source · location · purpose · sensitivity) | context |
+| 11 | token route – поток с точками человеческого суждения | context |
+| 12 | context compiler – raw sources → selected context | context |
+| 13 | Karpathy-derived loop – one mutable surface за run | review |
+| 14 | compaction algorithm – raw → recall → compact → handoff → resume | memory |
+| 15 | memory scopes – окно vs долгие хранилища | memory |
+| 16 | registry before governance – видимость агентов | guardrail |
+| 17 | agent passport – owner · scope · limits · revoke | guardrail |
+| 18 | AGENTS.md / CLAUDE.md – конституция проекта | context |
+| 19 | SKILL.md + automation – процедурная память и безопасная песочница | memory |
+| 20 | two-speed eval loop – review · signal · replay | review |
+| 21 | live session surface – локальный канон · search · graph · handoff · resume | observability |
+| 22 | custom graph – один видимый контур | карта |
+| 23 | harness complexity instrument – 8 осей · one next move | карта |
+| 24 | maturity contract – personal → team → company | масштаб |
+| 25 | live work · 12 минут – сборка вокруг своего брифа | практика |
+| 26 | transfer protocol – continuity · assess → transfer | передача |
 
 ## Управление декой
 
@@ -43,7 +51,7 @@
 
 ## Связанные поверхности этого репозитория
 
+- [naming/](naming/) – визуальная конвенция имён · [starter-pack/naming/](starter-pack/naming/) – live builder
 - [graph/](graph/) – интерактивная карта harness (39 узлов, 72 связи)
-- [naming-convention.md](naming-convention.md) – конвенция про конвенции
 - [operating-rules.md](operating-rules.md) – правила личного harness
-- [starter-pack/](starter-pack/) – шаблоны, скиллы, naming builder, evidence log
+- [setup.md](setup.md) – как собрать свой pack за вечер
