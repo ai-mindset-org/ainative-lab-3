@@ -28,7 +28,7 @@
 ## С чего начать
 
 1. Прочитай [setup.md](setup.md) – слоёная модель 4+1, пять фактов, которые меняют сетап, и маршрут сборки за вечер.
-2. Склонируй [starter-pack/](starter-pack/) или скачай [ZIP](starter-pack/ain3-personal-stack-starter-pack.zip).
+2. Склонируй [starter-pack/](starter-pack/) или скачай [ZIP](starter-pack/ain3-personal-harness-starter-pack.zip).
 3. Заполни operating brief → source map → router → первый SKILL.md → первый прогон → строка evidence.
 
 ## Карта репозитория

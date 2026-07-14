@@ -72,7 +72,7 @@ Router в корень ([`AGENTS.md`](starter-pack/AGENTS.md.template) / [`CLAUD
 
 ## 5. Что дальше
 
-- Скопируйте [starter-pack/](starter-pack/) (или [ZIP](starter-pack/ain3-personal-stack-starter-pack.zip)) и пройдите stages 1–4 на одном процессе.
+- Скопируйте [starter-pack/](starter-pack/) (или [ZIP](starter-pack/ain3-personal-harness-starter-pack.zip)) и пройдите stages 1–4 на одном процессе.
 - Карта всей системы – [graph/](graph/); правила – [operating-rules.md](operating-rules.md); адресация – [naming-convention.md](naming-convention.md).
 - Через 2–4 недели контур начнёт дрейфовать вместе с релизами инструментов – это нормально; лечится refresh-ритуалом, а не пересборкой.
 
