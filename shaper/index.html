@@ -1,0 +1,1171 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>shaper · design + product guide · AIN3</title>
+<meta name="description" content="Переносимый design + product guide для Shaper: продуктовые принципы, визуальная система, компоненты, 24 живых примера, handoff и QA.">
+<meta property="og:title" content="shaper · design + product guide">
+<meta property="og:description" content="Продуктовая логика, визуальная система, 24 живых примера и контракт передачи.">
+<meta property="og:image" content="https://ai-mindset-org.github.io/ainative-lab-3/assets/web-cover.png">
+<meta property="og:url" content="https://ai-mindset-org.github.io/ainative-lab-3/shaper/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ai-mindset-org.github.io/ainative-lab-3/assets/web-cover.png">
+<link rel="icon" href="../assets/aim-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff;
+  --ink:#000;
+  --soft:#d9d9d9;
+  --hair:#ececec;
+  --muted:#8a8a8a;
+  --frame:1px;
+  --gutter:22px;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --max:1380px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--mono);
+  font-size:14px;
+  line-height:1.55;
+  letter-spacing:.04em;
+  -webkit-font-smoothing:antialiased;
+}
+button,input{font:inherit}
+button,a{color:inherit}
+a{text-decoration-thickness:1px;text-underline-offset:3px}
+button{border-radius:0}
+::selection{background:var(--ink);color:var(--bg)}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--ink);color:var(--bg);padding:8px 12px;z-index:100}
+.skip:focus{left:8px}
+.shell{width:min(var(--max),calc(100% - 44px));margin:0 auto}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:rgba(255,255,255,.96);
+  border-bottom:var(--frame) solid var(--ink);
+  backdrop-filter:blur(8px);
+}
+.topbar .shell{
+  min-height:58px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:28px;
+  align-items:center;
+}
+.brand{width:max-content;font-size:16px;font-weight:600;letter-spacing:.18em;text-decoration:none}
+.crumb{font-size:11px;color:var(--muted);letter-spacing:.1em}
+.top-actions{display:flex;align-items:center;gap:8px}
+.action{
+  appearance:none;
+  border:var(--frame) solid var(--ink);
+  background:var(--bg);
+  color:var(--ink);
+  min-height:32px;
+  padding:6px 10px;
+  cursor:pointer;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.action:hover,.action:focus-visible,.action.active{background:var(--ink);color:var(--bg);outline:0}
+.menu{
+  border-bottom:var(--frame) solid var(--soft);
+  background:var(--bg);
+}
+.menu .shell{display:flex;gap:22px;overflow:auto;scrollbar-width:none}
+.menu a{
+  flex:0 0 auto;
+  padding:10px 0 9px;
+  color:var(--muted);
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-decoration:none;
+}
+.menu a:hover,.menu a:focus-visible{color:var(--ink)}
+main{overflow:hidden}
+.hero{padding:84px 0 64px;border-bottom:var(--frame) solid var(--ink)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.65fr);gap:64px;align-items:end}
+.eyebrow,.section-kicker,.micro{
+  font-size:10px;
+  line-height:1.4;
+  color:var(--muted);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.hero h1{
+  margin:16px 0 20px;
+  max-width:900px;
+  font-size:clamp(38px,6.3vw,88px);
+  line-height:.98;
+  letter-spacing:-.055em;
+  font-weight:500;
+  text-transform:lowercase;
+}
+.hero .lead{max-width:760px;margin:0;font-size:clamp(15px,1.7vw,21px);line-height:1.55;letter-spacing:.01em}
+.hero-note{border:var(--frame) solid var(--ink)}
+.hero-note .note-head{background:var(--ink);color:var(--bg);padding:10px 14px;font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+.hero-note dl{margin:0}
+.hero-note dl>div{display:grid;grid-template-columns:108px 1fr;gap:12px;padding:10px 14px;border-top:var(--frame) solid var(--soft)}
+.hero-note dt{color:var(--muted)}
+.hero-note dd{margin:0;text-align:right}
+.metric-strip{display:grid;grid-template-columns:repeat(6,1fr);border:var(--frame) solid var(--ink);border-top:0}
+.metric{padding:18px 16px;min-width:0;border-right:var(--frame) solid var(--ink)}
+.metric:last-child{border-right:0}
+.metric strong{display:block;font-size:22px;font-weight:500;letter-spacing:-.04em}
+.metric span{display:block;margin-top:5px;color:var(--muted);font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+.section{padding:78px 0;border-bottom:var(--frame) solid var(--ink)}
+.section-head{display:grid;grid-template-columns:190px minmax(0,1fr);gap:40px;margin-bottom:34px}
+.section-head h2{margin:0;font-size:clamp(25px,3.2vw,42px);line-height:1.06;font-weight:500;letter-spacing:-.035em;text-transform:lowercase}
+.section-head p{max-width:760px;margin:14px 0 0;color:var(--muted)}
+.section-index{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:center;height:max-content}
+.index-dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--bg);font-size:11px;font-weight:600}
+.index-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gutter)}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gutter)}
+.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:var(--frame) solid var(--ink)}
+.rule-card,.product-card{border:var(--frame) solid var(--ink);padding:22px;position:relative}
+.rule-card .num{
+  position:absolute;
+  top:-12px;
+  left:14px;
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--ink);
+  color:var(--bg);
+  font-size:11px;
+  font-weight:600;
+}
+.rule-card h3,.product-card h3{margin:4px 0 8px;font-size:15px;font-weight:500;letter-spacing:.01em;text-transform:lowercase}
+.rule-card p,.product-card p{margin:0;color:var(--muted);font-size:12px}
+.contract-cell{padding:22px;border-right:var(--frame) solid var(--ink)}
+.contract-cell:last-child{border-right:0}
+.contract-cell strong{display:block;margin:12px 0 6px;font-size:18px;font-weight:500}
+.contract-cell p{margin:0;color:var(--muted);font-size:11px}
+.decision-table,.data-table{width:100%;border-collapse:collapse;border:var(--frame) solid var(--ink)}
+.decision-table th,.decision-table td,.data-table th,.data-table td{padding:13px 14px;text-align:left;border-right:var(--frame) solid var(--soft);border-bottom:var(--frame) solid var(--soft);vertical-align:top}
+.decision-table th,.data-table th{font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.decision-table td:first-child{font-weight:500;color:var(--ink)}
+.decision-table td{color:var(--muted);font-size:11px}
+.decision-table tr:last-child td,.data-table tr:last-child td{border-bottom:0}
+.decision-table th:last-child,.decision-table td:last-child,.data-table th:last-child,.data-table td:last-child{border-right:0}
+.architecture{display:grid;grid-template-columns:repeat(5,1fr);border:var(--frame) solid var(--ink);position:relative}
+.architecture article{min-height:170px;padding:24px 18px;border-right:var(--frame) solid var(--ink)}
+.architecture article:last-child{border-right:0}
+.architecture .layer-num{display:block;color:var(--muted);font-size:10px;letter-spacing:.16em}
+.architecture h3{margin:28px 0 8px;font-size:14px;font-weight:500}
+.architecture p{margin:0;color:var(--muted);font-size:10px}
+.priority-flow{display:flex;align-items:stretch;border:var(--frame) solid var(--ink);margin-top:22px;overflow:auto}
+.priority-flow span{flex:1;min-width:155px;padding:14px;border-right:var(--frame) solid var(--ink);font-size:11px}
+.priority-flow span:last-child{border-right:0}
+.priority-flow b{color:var(--muted);font-weight:400;margin-right:8px}
+.canonical{border:var(--frame) solid var(--ink);background:var(--bg)}
+.canonical-head{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:baseline;padding:18px 20px;border-bottom:var(--frame) solid var(--ink)}
+.canonical-brand{font-weight:600;letter-spacing:.18em;font-size:18px}
+.canonical-title{color:var(--muted);font-size:11px}
+.canonical-meta{text-align:right;font-size:10px;color:var(--muted)}
+.canonical-strip{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:var(--frame) solid var(--ink)}
+.canonical-strip div{padding:13px 14px;border-right:var(--frame) solid var(--ink)}
+.canonical-strip div:last-child{border-right:0}
+.canonical-strip strong{display:block;font-size:18px;font-weight:500}
+.canonical-strip span{display:block;color:var(--muted);font-size:8px;letter-spacing:.14em;text-transform:uppercase}
+.canonical-body{display:grid;grid-template-columns:.7fr 1.35fr .75fr;min-height:390px}
+.canonical-panel{padding:18px;border-right:var(--frame) solid var(--ink)}
+.canonical-panel:last-child{border-right:0}
+.panel-title{display:flex;justify-content:space-between;gap:12px;padding-bottom:10px;margin-bottom:14px;border-bottom:var(--frame) solid var(--soft);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.system-map{display:grid;gap:9px}
+.map-node{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:center;padding:10px;border:var(--frame) solid var(--ink);font-size:10px}
+.map-node.active{background:var(--ink);color:var(--bg)}
+.node-num{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--bg);font-size:9px}
+.map-node.active .node-num{background:var(--bg);color:var(--ink)}
+.node-state{color:var(--muted);font-size:8px;text-transform:uppercase;letter-spacing:.12em}
+.map-node.active .node-state{color:var(--soft)}
+.pipeline{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;position:relative}
+.pipeline-block{min-height:112px;border:var(--frame) solid var(--ink);padding:14px;position:relative}
+.pipeline-block .callout{position:absolute;top:-9px;left:10px;width:18px;height:18px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:8px}
+.pipeline-block strong{display:block;margin-top:10px;font-size:11px;font-weight:500}
+.pipeline-block p{margin:6px 0 0;color:var(--muted);font-size:9px}
+.evidence-list{display:grid;gap:0;border:var(--frame) solid var(--ink)}
+.evidence-row{display:grid;grid-template-columns:52px 1fr;gap:8px;padding:10px;border-bottom:var(--frame) solid var(--soft);font-size:9px}
+.evidence-row:last-child{border-bottom:0}
+.evidence-row time{color:var(--muted)}
+.canonical-foot{display:flex;justify-content:space-between;gap:20px;padding:12px 18px;border-top:var(--frame) solid var(--ink);color:var(--muted);font-size:9px}
+.token-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--gutter)}
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);border:var(--frame) solid var(--ink)}
+.swatch{min-height:135px;padding:12px;border-right:var(--frame) solid var(--ink);display:flex;flex-direction:column;justify-content:flex-end}
+.swatch:last-child{border-right:0}
+.swatch::before{content:"";display:block;flex:1;margin:-12px -12px 12px;background:var(--swatch);border-bottom:var(--frame) solid var(--ink)}
+.swatch.dark{color:var(--ink)}
+.swatch span{font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.swatch code{font-size:10px}
+.code-box{border:var(--frame) solid var(--ink);min-width:0}
+.code-head{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 12px;background:var(--ink);color:var(--bg)}
+.code-head span{font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+.copy{
+  appearance:none;
+  background:transparent;
+  color:inherit;
+  border:var(--frame) solid currentColor;
+  padding:5px 8px;
+  cursor:pointer;
+  font-size:8px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.copy:hover,.copy:focus-visible{background:var(--bg);color:var(--ink);outline:0}
+pre{margin:0;padding:16px;overflow:auto;font:11px/1.65 var(--mono);letter-spacing:0;white-space:pre}
+.type-spec{display:grid;grid-template-columns:180px 1fr 150px;border:var(--frame) solid var(--ink)}
+.type-spec>div{display:contents}
+.type-spec span{padding:13px 14px;border-bottom:var(--frame) solid var(--soft)}
+.type-spec>div:last-child span{border-bottom:0}
+.type-spec .role,.type-spec .meta{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.type-spec .sample{font-size:var(--size);font-weight:var(--weight);letter-spacing:var(--space);text-transform:var(--case)}
+.rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gutter);margin-top:22px}
+.mini-rule{border:var(--frame) solid var(--ink);padding:16px}
+.mini-rule strong{display:block;font-size:11px;font-weight:500}
+.mini-rule span{display:block;margin-top:6px;color:var(--muted);font-size:10px}
+.filters{display:flex;gap:0;overflow:auto;margin-bottom:22px;border:var(--frame) solid var(--ink);width:max-content;max-width:100%}
+.filter{
+  appearance:none;
+  background:var(--bg);
+  color:var(--ink);
+  border:0;
+  border-right:var(--frame) solid var(--ink);
+  padding:9px 13px;
+  cursor:pointer;
+  font-size:9px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.filter:last-child{border-right:0}
+.filter:hover,.filter:focus-visible,.filter.active{background:var(--ink);color:var(--bg);outline:0}
+.examples{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gutter)}
+.example{border:var(--frame) solid var(--ink);display:flex;flex-direction:column;min-width:0}
+.example[hidden]{display:none}
+.example-meta{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-bottom:var(--frame) solid var(--ink);font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.example-meta b{color:var(--ink);font-weight:500}
+.preview{padding:16px;min-height:218px;display:grid;align-content:center;background:var(--bg);overflow:hidden}
+.example-copy{padding:13px 14px;border-top:var(--frame) solid var(--soft);margin-top:auto}
+.example-copy h3{margin:0 0 5px;font-size:12px;font-weight:500}
+.example-copy p{margin:0;color:var(--muted);font-size:10px}
+.demo-frame{border:var(--frame) solid var(--ink);font-size:9px}
+.demo-head{display:flex;justify-content:space-between;gap:10px;padding:8px 9px;border-bottom:var(--frame) solid var(--ink)}
+.demo-head b{letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.demo-body{padding:10px}
+.demo-label{font-size:7px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.demo-value{margin-top:4px;font-size:11px}
+.demo-row{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:var(--frame) solid var(--hair)}
+.demo-row:last-child{border-bottom:0}
+.demo-row span:first-child{color:var(--muted)}
+.demo-invert{background:var(--ink);color:var(--bg);padding:9px}
+.demo-tabs{display:flex;border:var(--frame) solid var(--ink)}
+.demo-tabs span{flex:1;padding:7px;text-align:center;border-right:var(--frame) solid var(--ink);font-size:8px;text-transform:uppercase;letter-spacing:.1em}
+.demo-tabs span:last-child{border-right:0}
+.demo-tabs .active{background:var(--ink);color:var(--bg)}
+.demo-stats{display:grid;grid-template-columns:repeat(4,1fr);border:var(--frame) solid var(--ink)}
+.demo-stat{padding:8px;border-right:var(--frame) solid var(--ink)}
+.demo-stat:last-child{border-right:0}
+.demo-stat b{display:block;font-size:13px;font-weight:500}
+.demo-stat span{font-size:6px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em}
+.demo-filter{display:flex;gap:5px;flex-wrap:wrap}
+.demo-chip{border:var(--frame) solid var(--ink);padding:4px 7px;font-size:7px}
+.demo-chip.active{background:var(--ink);color:var(--bg)}
+.demo-table{width:100%;border-collapse:collapse}
+.demo-table th,.demo-table td{padding:6px;border-bottom:var(--frame) solid var(--soft);text-align:left;font-size:7px}
+.demo-table th{color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:400}
+.demo-table tr:last-child td{border-bottom:0}
+.demo-form{display:grid;gap:8px}
+.demo-field label{display:block;margin-bottom:4px;color:var(--muted);font-size:7px;letter-spacing:.12em;text-transform:uppercase}
+.demo-field div{border:var(--frame) solid var(--ink);padding:7px}
+.demo-button{display:inline-block;border:var(--frame) solid var(--ink);padding:6px 9px;text-transform:uppercase;letter-spacing:.1em;font-size:7px}
+.demo-button.primary{background:var(--ink);color:var(--bg)}
+.demo-status{display:grid;grid-template-columns:8px 1fr auto;gap:8px;align-items:center;padding:8px;border:var(--frame) solid var(--ink)}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--ink)}
+.demo-empty{min-height:130px;border:var(--frame) dashed var(--soft);display:grid;place-items:center;text-align:center;padding:20px}
+.demo-empty b{display:block;font-weight:500}
+.demo-empty span{display:block;color:var(--muted);font-size:7px;margin:5px 0 10px}
+.demo-error{border:var(--frame) solid var(--ink)}
+.demo-error .error-head{background:var(--ink);color:var(--bg);padding:7px 9px}
+.demo-error .error-body{padding:9px}
+.demo-cmd{border:var(--frame) solid var(--ink);box-shadow:8px 8px 0 var(--hair)}
+.cmd-input{padding:9px;border-bottom:var(--frame) solid var(--ink);color:var(--muted)}
+.cmd-item{display:grid;grid-template-columns:18px 1fr auto;gap:8px;padding:7px 9px;border-bottom:var(--frame) solid var(--hair)}
+.cmd-item:last-child{border-bottom:0}
+.cmd-item.active{background:var(--ink);color:var(--bg)}
+.cmd-key{border:var(--frame) solid currentColor;padding:1px 3px}
+.demo-modal{position:relative;min-height:150px;border:var(--frame) solid var(--soft);background:var(--hair);padding:18px}
+.demo-dialog{background:var(--bg);border:var(--frame) solid var(--ink)}
+.dialog-head{display:flex;justify-content:space-between;padding:7px 9px;border-bottom:var(--frame) solid var(--ink)}
+.dialog-body{padding:9px}
+.demo-roster{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.person{border:var(--frame) solid var(--ink)}
+.avatar{aspect-ratio:1;background:repeating-linear-gradient(45deg,var(--hair),var(--hair) 5px,var(--bg) 5px,var(--bg) 10px);border-bottom:var(--frame) solid var(--ink);display:grid;place-items:center;font-size:18px}
+.person div:last-child{padding:6px;font-size:7px}
+.demo-pipeline{display:grid;grid-template-columns:1fr 18px 1fr 18px 1fr;align-items:center}
+.demo-pipeline .box{border:var(--frame) solid var(--ink);padding:10px 7px;text-align:center}
+.demo-pipeline .arrow{text-align:center}
+.demo-controls{display:grid;grid-template-columns:1fr auto;gap:10px}
+.control-stack{display:grid;gap:8px}
+.slider{display:grid;grid-template-columns:42px 1fr 28px;gap:6px;align-items:center}
+.track{height:1px;background:var(--ink);position:relative}
+.track::after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--ink);left:62%;top:50%;transform:translate(-50%,-50%)}
+.monitor{width:74px;aspect-ratio:1;border:var(--frame) solid var(--ink);display:grid;place-items:center;background:repeating-linear-gradient(0deg,var(--bg),var(--bg) 5px,var(--hair) 5px,var(--hair) 6px)}
+.timeline{border-left:var(--frame) solid var(--ink);margin-left:9px}
+.time-event{position:relative;padding:0 0 12px 20px}
+.time-event:last-child{padding-bottom:0}
+.time-event::before{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--ink);left:-4px;top:4px}
+.time-event time{display:block;color:var(--muted);font-size:7px}
+.time-event b{font-weight:500;font-size:8px}
+.compare{display:grid;grid-template-columns:1fr 1fr;border:var(--frame) solid var(--ink)}
+.compare>div{padding:10px}
+.compare>div+div{border-left:var(--frame) solid var(--ink)}
+.compare b{display:block;margin-bottom:8px;font-size:8px;letter-spacing:.1em;text-transform:uppercase}
+.source-stamp{border-top:var(--frame) solid var(--ink);padding-top:8px;display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:7px}
+.copy-table{width:100%;border-collapse:collapse;border:var(--frame) solid var(--ink)}
+.copy-table th,.copy-table td{padding:14px;border-right:var(--frame) solid var(--soft);border-bottom:var(--frame) solid var(--soft);text-align:left}
+.copy-table th{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.copy-table td{font-size:11px}
+.copy-table th:last-child,.copy-table td:last-child{border-right:0}
+.copy-table tr:last-child td{border-bottom:0}
+.handoff{display:grid;grid-template-columns:1fr 1fr;gap:var(--gutter)}
+.handoff-list{border:var(--frame) solid var(--ink)}
+.handoff-row{display:grid;grid-template-columns:32px 130px 1fr;gap:12px;padding:12px 14px;border-bottom:var(--frame) solid var(--soft);align-items:baseline}
+.handoff-row:last-child{border-bottom:0}
+.handoff-row .n{color:var(--muted)}
+.handoff-row b{font-weight:500;font-size:11px}
+.handoff-row span:last-child{color:var(--muted);font-size:10px}
+.build-steps{counter-reset:step;border:var(--frame) solid var(--ink)}
+.build-step{counter-increment:step;display:grid;grid-template-columns:34px 1fr auto;gap:12px;padding:12px 14px;border-bottom:var(--frame) solid var(--soft);align-items:center}
+.build-step:last-child{border-bottom:0}
+.build-step::before{content:counter(step,decimal-leading-zero);color:var(--muted);font-size:9px}
+.build-step b{font-size:11px;font-weight:500}
+.build-step span{color:var(--muted);font-size:9px}
+.qa-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gutter)}
+.checklist{border:var(--frame) solid var(--ink)}
+.checklist h3{margin:0;padding:12px 14px;background:var(--ink);color:var(--bg);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.checklist ul{list-style:none;margin:0;padding:0}
+.checklist li{display:grid;grid-template-columns:16px 1fr;gap:9px;padding:10px 12px;border-bottom:var(--frame) solid var(--soft);font-size:10px}
+.checklist li:last-child{border-bottom:0}
+.checklist li::before{content:"□"}
+.end-note{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;padding:54px 0}
+.end-note h2{margin:0;font-size:clamp(28px,4vw,54px);line-height:1.02;letter-spacing:-.045em;font-weight:500}
+.end-note p{max-width:700px;margin:14px 0 0;color:var(--muted)}
+.end-stamp{text-align:right;color:var(--muted);font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+.back-top{display:inline-block;margin-top:10px}
+#toast{position:fixed;right:18px;bottom:18px;z-index:100;background:var(--ink);color:var(--bg);padding:10px 12px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;opacity:0;transform:translateY(8px);pointer-events:none;transition:.16s}
+#toast.on{opacity:1;transform:translateY(0)}
+.real-modal{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:24px;background:rgba(255,255,255,.82);backdrop-filter:blur(8px)}
+.real-modal.open{display:grid}
+.real-dialog{width:min(720px,100%);max-height:80vh;overflow:auto;border:var(--frame) solid var(--ink);background:var(--bg)}
+.real-dialog .dialog-head{position:sticky;top:0;background:var(--bg)}
+.close{appearance:none;width:28px;height:28px;border:var(--frame) solid var(--ink);background:var(--bg);cursor:pointer}
+.close:hover,.close:focus-visible{background:var(--ink);color:var(--bg);outline:0}
+@media (max-width:1050px){
+  .hero-grid,.token-layout{grid-template-columns:1fr}
+  .metric-strip{grid-template-columns:repeat(3,1fr)}
+  .metric:nth-child(3){border-right:0}
+  .metric:nth-child(-n+3){border-bottom:var(--frame) solid var(--ink)}
+  .grid-3,.examples{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .architecture{grid-template-columns:repeat(3,1fr)}
+  .architecture article:nth-child(3){border-right:0}
+  .architecture article:nth-child(-n+3){border-bottom:var(--frame) solid var(--ink)}
+  .architecture article:nth-child(4){border-right:var(--frame) solid var(--ink)}
+  .canonical-body{grid-template-columns:1fr 1.4fr}
+  .canonical-panel:nth-child(2){border-right:0}
+  .canonical-panel:last-child{grid-column:1/-1;border-top:var(--frame) solid var(--ink)}
+  .qa-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .shell{width:min(100% - 28px,var(--max))}
+  .topbar .shell{grid-template-columns:1fr auto;gap:12px}
+  .crumb{display:none}
+  .top-actions .action:first-child{display:none}
+  .hero{padding:56px 0 42px}
+  .hero-grid{gap:28px}
+  .section{padding:54px 0}
+  .section-head{grid-template-columns:1fr;gap:14px}
+  .section-index{grid-template-columns:28px 1fr}
+  .grid-2,.grid-3,.examples,.handoff,.qa-grid{grid-template-columns:1fr}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .contract-cell:nth-child(2){border-right:0}
+  .contract-cell:nth-child(-n+2){border-bottom:var(--frame) solid var(--ink)}
+  .metric-strip{grid-template-columns:repeat(2,1fr)}
+  .metric:nth-child(3){border-right:var(--frame) solid var(--ink)}
+  .metric:nth-child(even){border-right:0}
+  .metric:nth-child(-n+4){border-bottom:var(--frame) solid var(--ink)}
+  .architecture{grid-template-columns:1fr}
+  .architecture article,.architecture article:nth-child(3),.architecture article:nth-child(4){border-right:0;border-bottom:var(--frame) solid var(--ink)}
+  .architecture article:last-child{border-bottom:0}
+  .canonical-head{grid-template-columns:1fr auto}
+  .canonical-title{grid-column:1/-1;grid-row:2}
+  .canonical-strip{grid-template-columns:repeat(2,1fr)}
+  .canonical-strip div{border-bottom:var(--frame) solid var(--ink)}
+  .canonical-strip div:nth-child(even){border-right:0}
+  .canonical-strip div:last-child{grid-column:1/-1;border-bottom:0}
+  .canonical-body{grid-template-columns:1fr}
+  .canonical-panel,.canonical-panel:nth-child(2){border-right:0;border-bottom:var(--frame) solid var(--ink)}
+  .canonical-panel:last-child{grid-column:auto;border-top:0;border-bottom:0}
+  .pipeline{grid-template-columns:1fr}
+  .swatches{grid-template-columns:1fr 1fr}
+  .swatch{border-bottom:var(--frame) solid var(--ink)}
+  .swatch:nth-child(even){border-right:0}
+  .swatch:last-child{grid-column:1/-1;border-bottom:0}
+  .type-spec{grid-template-columns:1fr}
+  .type-spec>div{display:grid;grid-template-columns:1fr}
+  .type-spec span{padding:9px 12px}
+  .type-spec .sample{padding-top:0}
+  .type-spec .meta{padding-top:0}
+  .rules-grid{grid-template-columns:1fr}
+  .decision-table{display:block;overflow-x:auto;white-space:nowrap}
+  .handoff-row{grid-template-columns:26px 1fr}
+  .handoff-row span:last-child{grid-column:2}
+  .build-step{grid-template-columns:28px 1fr}
+  .build-step span{grid-column:2}
+  .end-note{grid-template-columns:1fr}
+  .end-stamp{text-align:left}
+}
+@media (max-width:430px){
+  body{font-size:12px}
+  .hero h1{font-size:39px}
+  .top-actions .action{padding:5px 7px}
+  .grid-4{grid-template-columns:1fr}
+  .contract-cell,.contract-cell:nth-child(2){border-right:0;border-bottom:var(--frame) solid var(--ink)}
+  .contract-cell:last-child{border-bottom:0}
+  .canonical-meta{max-width:95px}
+  .canonical-strip{grid-template-columns:1fr}
+  .canonical-strip div,.canonical-strip div:nth-child(even){border-right:0}
+  .canonical-strip div:last-child{grid-column:auto}
+  .demo-roster{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+@media print{
+  .topbar,.menu,.filters,.top-actions,#toast,.real-modal{display:none!important}
+  .shell{width:100%}
+  .section{break-before:page;padding:28px 0}
+  .example{break-inside:avoid}
+  body{font-size:10px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">к содержанию</a>
+
+<header class="topbar">
+  <div class="shell">
+    <a class="brand" href="../">shaper</a>
+    <div class="crumb">design + product guide · fig. 01 · AIN3</div>
+    <div class="top-actions">
+      <button class="action" type="button" data-copy="#tokensCode">copy tokens</button>
+      <button class="action" type="button" onclick="window.print()">print / pdf</button>
+    </div>
+  </div>
+</header>
+
+<nav class="menu" aria-label="разделы гайда">
+  <div class="shell">
+    <a href="#contract">01 · contract</a>
+    <a href="#product">02 · product</a>
+    <a href="#reference">03 · reference</a>
+    <a href="#system">04 · system</a>
+    <a href="#examples">05 · examples</a>
+    <a href="#content">06 · content</a>
+    <a href="#handoff">07 · handoff</a>
+    <a href="#qa">08 · qa</a>
+  </div>
+</nav>
+
+<main id="main">
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <div class="eyebrow">AI MINDSET · AIN3 · PORTABLE SYSTEM · V1.0</div>
+        <h1>shaper · design + product guide</h1>
+        <p class="lead">переносимая система для схем, дашбордов, инструментов и рабочих гайдов. продуктовая логика, визуальный язык, компоненты, 24 живых примера и контракт передачи в одном файле.</p>
+      </div>
+      <aside class="hero-note" aria-label="паспорт гайда">
+        <div class="note-head">artifact passport</div>
+        <dl>
+          <div><dt>owner</dt><dd>ai mindset</dd></div>
+          <div><dt>audience</dt><dd>product · design · agents</dd></div>
+          <div><dt>format</dt><dd>single html · no build</dd></div>
+          <div><dt>source</dt><dd>ainative-lab-3</dd></div>
+          <div><dt>updated</dt><dd>2026-07-14</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <div class="shell metric-strip" aria-label="ключевые параметры">
+    <div class="metric"><strong>1px</strong><span>frame</span></div>
+    <div class="metric"><strong>.04em</strong><span>body tracking</span></div>
+    <div class="metric"><strong>.18em</strong><span>label tracking</span></div>
+    <div class="metric"><strong>3</strong><span>grey tokens</span></div>
+    <div class="metric"><strong>24</strong><span>live examples</span></div>
+    <div class="metric"><strong>1</strong><span>source stamp</span></div>
+  </div>
+
+  <section class="section" id="contract">
+    <div class="shell">
+      <div class="section-head">
+        <div class="section-index"><span class="index-dot">1</span><span class="index-label">contract</span></div>
+        <div>
+          <h2>сначала зафиксируй продуктовый контракт</h2>
+          <p>Shaper работает, когда экран отвечает на один рабочий вопрос, показывает текущее состояние и оставляет проверяемый след. Четыре поля ниже входят в каждый бриф.</p>
+        </div>
+      </div>
+
+      <div class="grid-4">
+        <article class="contract-cell">
+          <div class="micro">01 · question</div>
+          <strong>что происходит?</strong>
+          <p>один вопрос, который пользователь должен закрыть за один проход.</p>
+        </article>
+        <article class="contract-cell">
+          <div class="micro">02 · action</div>
+          <strong>что сделать?</strong>
+          <p>одно следующее действие рядом с данными, которые его обосновывают.</p>
+        </article>
+        <article class="contract-cell">
+          <div class="micro">03 · state</div>
+          <strong>что активно?</strong>
+          <p>инверсия показывает selection, focus, current и confirmed state.</p>
+        </article>
+        <article class="contract-cell">
+          <div class="micro">04 · evidence</div>
+          <strong>откуда известно?</strong>
+          <p>источник, data window, timestamp, owner и версия видны на поверхности.</p>
+        </article>
+      </div>
+
+      <div class="grid-3" style="margin-top:34px">
+        <article class="rule-card"><span class="num">1</span><h3>информация ведёт</h3><p>геометрия показывает иерархию, связи и состояние. Декор не занимает отдельный слой.</p></article>
+        <article class="rule-card"><span class="num">2</span><h3>один экран · один вопрос</h3><p>каждая поверхность получает ведущий вопрос. Вторичные вопросы уходят в detail layer.</p></article>
+        <article class="rule-card"><span class="num">3</span><h3>состояние объясняет себя</h3><p>gate · silent, sync · stale, input · live читаются прямо в интерфейсе.</p></article>
+        <article class="rule-card"><span class="num">4</span><h3>плотность управляется</h3><p>высокая плотность допустима при стабильной сетке, табличных числах и ясных уровнях.</p></article>
+        <article class="rule-card"><span class="num">5</span><h3>действие рядом с причиной</h3><p>кнопка живёт рядом с сигналом, который запускает решение. Контекст сохраняется.</p></article>
+        <article class="rule-card"><span class="num">6</span><h3>артефакт переживает автора</h3><p>токены, примеры, handoff, source stamp и QA делают систему передаваемой.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="product">
+    <div class="shell">
+      <div class="section-head">
+        <div class="section-index"><span class="index-dot">2</span><span class="index-label">product</span></div>
+        <div>
+          <h2>выбери продуктовый архетип</h2>
+          <p>Архетип определяет главный вопрос, плотность и набор компонентов. Один продукт может содержать несколько архетипов, при этом каждый экран держит один ведущий режим.</p>
+        </div>
+      </div>
+
+      <table class="decision-table">
+        <thead><tr><th>архетип</th><th>ведущий вопрос</th><th>обязательные элементы</th><th>плотность</th><th>типичный результат</th></tr></thead>
+        <tbody>
+          <tr><td>schematic</td><td>как устроен поток?</td><td>numbered blocks · connectors · callouts · legend</td><td>medium</td><td>объяснить систему за 90 секунд</td></tr>
+          <tr><td>dashboard</td><td>что требует решения?</td><td>status strip · filters · table/feed · data window</td><td>high</td><td>найти отклонение и открыть detail</td></tr>
+          <tr><td>instrument</td><td>что делает система сейчас?</td><td>input state · controls · monitor · panic · readouts</td><td>high</td><td>управлять live-процессом</td></tr>
+          <tr><td>guide</td><td>как повторить метод?</td><td>contract · sequence · examples · handoff · QA</td><td>medium</td><td>передать практику другому человеку</td></tr>
+          <tr><td>roster</td><td>кого выбрать или открыть?</td><td>search · categories · cards · source · actions</td><td>high</td><td>найти сущность и проверить происхождение</td></tr>
+          <tr><td>artifact</td><td>какой вывод унести?</td><td>statement · one visual · annotations · stamp</td><td>low</td><td>поделиться одной законченной мыслью</td></tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:42px">
+        <div class="section-kicker" style="margin-bottom:14px">ANATOMY · FIVE LAYERS</div>
+        <div class="architecture">
+          <article><span class="layer-num">01 / identity</span><h3>header</h3><p>product · context · version · owner</p></article>
+          <article><span class="layer-num">02 / orientation</span><h3>status strip</h3><p>health · scope · data window · selection</p></article>
+          <article><span class="layer-num">03 / work</span><h3>workspace</h3><p>the primary question and action</p></article>
+          <article><span class="layer-num">04 / depth</span><h3>detail layer</h3><p>modal · drawer · expanded evidence</p></article>
+          <article><span class="layer-num">05 / trust</span><h3>source stamp</h3><p>source · time · version · owner</p></article>
+        </div>
+        <div class="priority-flow" aria-label="порядок внимания">
+          <span><b>01</b>question</span>
+          <span><b>02</b>current state</span>
+          <span><b>03</b>next action</span>
+          <span><b>04</b>evidence</span>
+          <span><b>05</b>metadata</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reference">
+    <div class="shell">
+      <div class="section-head">
+        <div class="section-index"><span class="index-dot">3</span><span class="index-label">reference</span></div>
+        <div>
+          <h2>эталон · один законченный экран</h2>
+          <p>Эта поверхность соединяет identity, status, workspace, selection, evidence и provenance. Используй её как визуальный тест перед детализацией продукта.</p>
+        </div>
+      </div>
+
+      <div class="canonical">
+        <header class="canonical-head">
+          <div class="canonical-brand">shaper</div>
+          <div class="canonical-title">fig. 01 · operating system · evidence loop</div>
+          <div class="canonical-meta">v1.0 · 2026-07-14 · live</div>
+        </header>
+        <div class="canonical-strip">
+          <div><strong>06</strong><span>active flows</span></div>
+          <div><strong>93%</strong><span>evidence coverage</span></div>
+          <div><strong>14m</strong><span>last refresh</span></div>
+          <div><strong>02</strong><span>attention</span></div>
+          <div><strong>W1</strong><span>data window</span></div>
+        </div>
+        <div class="canonical-body">
+          <section class="canonical-panel">
+            <div class="panel-title"><span>system map</span><span>4 layers</span></div>
+            <div class="system-map">
+              <div class="map-node"><span class="node-num">1</span><span>context</span><span class="node-state">ready</span></div>
+              <div class="map-node active"><span class="node-num">2</span><span>workflow</span><span class="node-state">active</span></div>
+              <div class="map-node"><span class="node-num">3</span><span>review</span><span class="node-state">2 open</span></div>
+              <div class="map-node"><span class="node-num">4</span><span>memory</span><span class="node-state">fresh</span></div>
+            </div>
+          </section>
+          <section class="canonical-panel">
+            <div class="panel-title"><span>current flow</span><span>one process · one trace</span></div>
+            <div class="pipeline">
+              <article class="pipeline-block"><span class="callout">1</span><strong>source</strong><p>brief · notes · constraints</p></article>
+              <article class="pipeline-block"><span class="callout">2</span><strong>run</strong><p>one bounded operation</p></article>
+              <article class="pipeline-block"><span class="callout">3</span><strong>review</strong><p>binary eval · human gate</p></article>
+              <article class="pipeline-block"><span class="callout">4</span><strong>evidence</strong><p>timestamp · output · owner</p></article>
+              <article class="pipeline-block"><span class="callout">5</span><strong>refresh</strong><p>one system change</p></article>
+              <article class="pipeline-block demo-invert"><span class="callout" style="background:var(--bg);color:var(--ink)">6</span><strong>current</strong><p style="color:var(--soft)">publish guide · open</p></article>
+            </div>
+          </section>
+          <section class="canonical-panel">
+            <div class="panel-title"><span>evidence</span><span>latest 4</span></div>
+            <div class="evidence-list">
+              <div class="evidence-row"><time>14:32</time><span>guide structure confirmed</span></div>
+              <div class="evidence-row"><time>14:18</time><span>24 examples mapped</span></div>
+              <div class="evidence-row"><time>13:54</time><span>product contract passed</span></div>
+              <div class="evidence-row"><time>13:40</time><span>source tokens loaded</span></div>
+            </div>
+          </section>
+        </div>
+        <footer class="canonical-foot">
+          <span>source · ainative-lab-3 / shaper</span>
+          <span>fig. 01 · product surface · owner ai mindset</span>
+        </footer>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="system">
+    <div class="shell">
+      <div class="section-head">
+        <div class="section-index"><span class="index-dot">4</span><span class="index-label">system</span></div>
+        <div>
+          <h2>визуальная система</h2>
+          <p>Пять цветов, один шрифт, один frame и инверсия для active state. Эти ограничения создают совместимость между схемой, продуктовым экраном, слайдом и печатным артефактом.</p>
+        </div>
+      </div>
+
+      <div class="token-layout">
+        <div class="swatches" aria-label="палитра">
+          <div class="swatch" style="--swatch:#fff"><span>paper</span><code>#ffffff</code></div>
+          <div class="swatch dark" style="--swatch:#000"><span>ink</span><code>#000000</code></div>
+          <div class="swatch" style="--swatch:#d9d9d9"><span>soft</span><code>#d9d9d9</code></div>
+          <div class="swatch" style="--swatch:#ececec"><span>hair</span><code>#ececec</code></div>
+          <div class="swatch" style="--swatch:#8a8a8a"><span>muted</span><code>#8a8a8a</code></div>
+        </div>
+        <div class="code-box">
+          <div class="code-head"><span>core tokens · copy and start</span><button class="copy" type="button" data-copy="#tokensCode">copy</button></div>
+          <pre id="tokensCode">:root {
+  --bg: #ffffff;
+  --ink: #000000;
+  --soft: #d9d9d9;
+  --hair: #ececec;
+  --muted: #8a8a8a;
+  --frame: 1px;
+  --gutter: 22px;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  letter-spacing: .04em;
+}
+
+.active {
+  background: var(--ink);
+  color: var(--bg);
+}</pre>
+        </div>
+      </div>
+
+      <div style="margin-top:34px" class="type-spec">
+        <div><span class="role">role</span><span class="sample" style="--size:21px;--weight:600;--space:.18em;--case:lowercase">shaper wordmark</span><span class="meta">21–22 · 600 · .18em</span></div>
+        <div><span class="role">section</span><span class="sample" style="--size:11px;--weight:500;--space:.18em;--case:uppercase">SYSTEM STATUS</span><span class="meta">10–11 · 500 · .18em</span></div>
+        <div><span class="role">lead</span><span class="sample" style="--size:16px;--weight:400;--space:.02em;--case:lowercase">one process · one trace</span><span class="meta">16 · 400 · .02em</span></div>
+        <div><span class="role">body</span><span class="sample" style="--size:13px;--weight:400;--space:.04em;--case:lowercase">current state and next action</span><span class="meta">13–14 · 400 · .04em</span></div>
+        <div><span class="role">micro</span><span class="sample" style="--size:10px;--weight:400;--space:.14em;--case:uppercase">SOURCE · 14:32 · LIVE</span><span class="meta">9–11 · 400 · .10–.18em</span></div>
+      </div>
+
+      <div class="rules-grid">
+        <article class="mini-rule"><strong>geometry · square</strong><span>прямые углы, circles только для callout, status dot и slider thumb.</span></article>
+        <article class="mini-rule"><strong>frame · 1px</strong><span>ink для структуры, soft для внутренних делений, dashed для reference axis.</span></article>
+        <article class="mini-rule"><strong>spacing · 22px</strong><span>базовый gutter 22px, компактный шаг 8–14px, крупный section step 54–84px.</span></article>
+        <article class="mini-rule"><strong>state · inversion</strong><span>selected, current, active и confirmed получают ink background.</span></article>
+        <article class="mini-rule"><strong>motion · signal</strong><span>анимация сообщает live, loading или transition. idle остаётся спокойным.</span></article>
+        <article class="mini-rule"><strong>icon · geometry</strong><span>линии, стрелки, ◆ ◇ ◉ ✗ и буквенные callouts поддерживают технический язык.</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="examples">
+    <div class="shell">
+      <div class="section-head">
+        <div class="section-index"><span class="index-dot">5</span><span class="index-label">examples</span></div>
+        <div>
+          <h2>24 живых паттерна</h2>
+          <p>Каждый пример соединяет визуальное решение с продуктовой задачей. Фильтры помогают собрать минимальный набор для конкретной поверхности.</p>
+        </div>
+      </div>
+
+      <div class="filters" role="toolbar" aria-label="фильтр примеров">
+        <button class="filter active" type="button" data-filter="all">all · 24</button>
+        <button class="filter" type="button" data-filter="foundation">foundation · 4</button>
+        <button class="filter" type="button" data-filter="navigation">navigation · 4</button>
+        <button class="filter" type="button" data-filter="data">data · 5</button>
+        <button class="filter" type="button" data-filter="workflow">workflow · 4</button>
+        <button class="filter" type="button" data-filter="state">state · 4</button>
+        <button class="filter" type="button" data-filter="control">control · 3</button>
+      </div>
+
+      <div class="examples">
+        <article class="example" data-kind="foundation">
+          <div class="example-meta"><b>01 · block</b><span>foundation</span></div>
+          <div class="preview"><div class="rule-card"><span class="num">1</span><h3>bounded task</h3><p>одна рабочая единица с номером, названием, statement и readout.</p></div></div>
+          <div class="example-copy"><h3>numbered block</h3><p>используй для стадий, слоёв, правил и callouts.</p></div>
+        </article>
+
+        <article class="example" data-kind="foundation">
+          <div class="example-meta"><b>02 · strip</b><span>foundation</span></div>
+          <div class="preview"><div class="demo-stats"><div class="demo-stat"><b>24</b><span>runs</span></div><div class="demo-stat"><b>91%</b><span>pass</span></div><div class="demo-stat"><b>06m</b><span>fresh</span></div><div class="demo-stat"><b>02</b><span>open</span></div></div></div>
+          <div class="example-copy"><h3>status strip</h3><p>ориентирует до входа в основную рабочую область.</p></div>
+        </article>
+
+        <article class="example" data-kind="foundation">
+          <div class="example-meta"><b>03 · label</b><span>foundation</span></div>
+          <div class="preview"><div class="demo-frame"><div class="demo-head"><b>agent passport</b><span>v1.2</span></div><div class="demo-body"><div class="demo-row"><span>owner</span><span>alex</span></div><div class="demo-row"><span>scope</span><span>lab surfaces</span></div><div class="demo-row"><span>revoke</span><span>git access</span></div></div></div></div>
+          <div class="example-copy"><h3>label / value</h3><p>показывает паспорт сущности и облегчает сканирование.</p></div>
+        </article>
+
+        <article class="example" data-kind="foundation">
+          <div class="example-meta"><b>04 · stamp</b><span>foundation</span></div>
+          <div class="preview"><div><div class="demo-frame"><div class="demo-body"><div class="demo-label">artifact</div><div class="demo-value">harness map · fig. 03</div></div></div><div class="source-stamp"><span>source · manifest.json</span><span>2026-07-14 · v3</span></div></div></div>
+          <div class="example-copy"><h3>source stamp</h3><p>фиксирует происхождение, окно данных, версию и время.</p></div>
+        </article>
+
+        <article class="example" data-kind="navigation">
+          <div class="example-meta"><b>05 · tabs</b><span>navigation</span></div>
+          <div class="preview"><div class="demo-tabs"><span class="active">overview</span><span>graph</span><span>evidence</span><span>settings</span></div></div>
+          <div class="example-copy"><h3>primary tabs</h3><p>держи 4–6 режимов, active state показывает инверсия.</p></div>
+        </article>
+
+        <article class="example" data-kind="navigation">
+          <div class="example-meta"><b>06 · filters</b><span>navigation</span></div>
+          <div class="preview"><div class="demo-filter"><span class="demo-chip active">all 386</span><span class="demo-chip">◆ runs 50</span><span class="demo-chip">⊕ commits 174</span><span class="demo-chip">◇ rules 32</span></div></div>
+          <div class="example-copy"><h3>filter chips</h3><p>glyph, label и count делают фильтр самостоятельным.</p></div>
+        </article>
+
+        <article class="example" data-kind="navigation">
+          <div class="example-meta"><b>07 · cmd+k</b><span>navigation</span></div>
+          <div class="preview"><div class="demo-cmd"><div class="cmd-input">⌘K · search skills, files, runs</div><div class="cmd-item active"><span>◆</span><span>open operating brief</span><span class="cmd-key">↩</span></div><div class="cmd-item"><span>◇</span><span>copy source path</span><span class="cmd-key">⌥↩</span></div><div class="cmd-item"><span>⊕</span><span>resume latest run</span><span class="cmd-key">⌘↩</span></div></div></div>
+          <div class="example-copy"><h3>command palette</h3><p>добавляй при 50+ адресуемых сущностях и быстрых действиях.</p></div>
+        </article>
+
+        <article class="example" data-kind="navigation">
+          <div class="example-meta"><b>08 · detail</b><span>navigation</span></div>
+          <div class="preview"><div class="demo-modal"><div class="demo-dialog"><div class="dialog-head"><span>◆ RUN · 8F31A2</span><span>×</span></div><div class="dialog-body"><div class="demo-row"><span>status</span><span>passed</span></div><div class="demo-row"><span>evidence</span><span>4 files</span></div></div></div></div></div>
+          <div class="example-copy"><h3>detail modal</h3><p>сохраняет контекст списка и даёт место для evidence.</p></div>
+        </article>
+
+        <article class="example" data-kind="data">
+          <div class="example-meta"><b>09 · table</b><span>data</span></div>
+          <div class="preview"><table class="demo-table"><thead><tr><th>flow</th><th>owner</th><th>state</th></tr></thead><tbody><tr><td>content</td><td>katya</td><td>ready</td></tr><tr><td>lms</td><td>dan</td><td>live</td></tr><tr><td>guide</td><td>alex</td><td>review</td></tr></tbody></table></div>
+          <div class="example-copy"><h3>compact data table</h3><p>подходит для сравнения сущностей по стабильным полям.</p></div>
+        </article>
+
+        <article class="example" data-kind="data">
+          <div class="example-meta"><b>10 · evidence</b><span>data</span></div>
+          <div class="preview"><div class="evidence-list"><div class="evidence-row"><time>14:32</time><span>deploy completed · 24 files</span></div><div class="evidence-row"><time>14:18</time><span>mobile width passed · 390px</span></div><div class="evidence-row"><time>13:54</time><span>content review · accepted</span></div></div></div>
+          <div class="example-copy"><h3>evidence feed</h3><p>каждая строка несёт время, событие и проверяемый объект.</p></div>
+        </article>
+
+        <article class="example" data-kind="data">
+          <div class="example-meta"><b>11 · timeline</b><span>data</span></div>
+          <div class="preview"><div class="timeline"><div class="time-event"><time>W1 · DISCOVER</time><b>map one recurring process</b></div><div class="time-event"><time>W2 · BUILD</time><b>run the bounded workflow</b></div><div class="time-event"><time>W3 · TRANSFER</time><b>handoff with evidence</b></div></div></div>
+          <div class="example-copy"><h3>process timeline</h3><p>показывает порядок, фазу и переходы без сложной графики.</p></div>
+        </article>
+
+        <article class="example" data-kind="data">
+          <div class="example-meta"><b>12 · roster</b><span>data</span></div>
+          <div class="preview"><div class="demo-roster"><div class="person"><div class="avatar">A</div><div>alex<br><span style="color:var(--muted)">owner</span></div></div><div class="person"><div class="avatar">K</div><div>katya<br><span style="color:var(--muted)">design</span></div></div><div class="person"><div class="avatar">D</div><div>dan<br><span style="color:var(--muted)">tech</span></div></div></div></div>
+          <div class="example-copy"><h3>entity roster</h3><p>карточка хранит identity, роль, source category и действие.</p></div>
+        </article>
+
+        <article class="example" data-kind="data">
+          <div class="example-meta"><b>13 · compare</b><span>data</span></div>
+          <div class="preview"><div class="compare"><div><b>current</b><div class="demo-row"><span>coverage</span><span>62%</span></div><div class="demo-row"><span>owner</span><span>implicit</span></div></div><div class="demo-invert"><b>target</b><div class="demo-row"><span style="color:var(--soft)">coverage</span><span>95%</span></div><div class="demo-row"><span style="color:var(--soft)">owner</span><span>named</span></div></div></div></div>
+          <div class="example-copy"><h3>state comparison</h3><p>инверсия выделяет выбранный target и сохраняет общую сетку.</p></div>
+        </article>
+
+        <article class="example" data-kind="workflow">
+          <div class="example-meta"><b>14 · pipeline</b><span>workflow</span></div>
+          <div class="preview"><div class="demo-pipeline"><div class="box">source</div><div class="arrow">→</div><div class="box">run</div><div class="arrow">→</div><div class="box demo-invert">trace</div></div></div>
+          <div class="example-copy"><h3>linear pipeline</h3><p>используй при последовательности с одним направлением и 3–7 стадиями.</p></div>
+        </article>
+
+        <article class="example" data-kind="workflow">
+          <div class="example-meta"><b>15 · brief</b><span>workflow</span></div>
+          <div class="preview"><div class="demo-frame"><div class="demo-head"><b>operating brief</b><span>01 / 06</span></div><div class="demo-body"><div class="demo-row"><span>trigger</span><span>new transcript</span></div><div class="demo-row"><span>output</span><span>decision note</span></div><div class="demo-row"><span>done</span><span>owner + source</span></div></div></div></div>
+          <div class="example-copy"><h3>operating brief</h3><p>фиксирует trigger, inputs, output, owner и definition of done.</p></div>
+        </article>
+
+        <article class="example" data-kind="workflow">
+          <div class="example-meta"><b>16 · builder</b><span>workflow</span></div>
+          <div class="preview"><div class="demo-form"><div class="demo-field"><label>project</label><div>ain3</div></div><div class="demo-field"><label>type</label><div>guide</div></div><div class="demo-invert">ain3 guide shaper system – 2026-07-14</div></div></div>
+          <div class="example-copy"><h3>naming builder</h3><p>показывает grammar, live output и validation в одном потоке.</p></div>
+        </article>
+
+        <article class="example" data-kind="workflow">
+          <div class="example-meta"><b>17 · handoff</b><span>workflow</span></div>
+          <div class="preview"><div class="demo-frame"><div class="demo-head"><b>transfer</b><span>3 / 3</span></div><div class="demo-body"><div class="demo-status"><span class="status-dot"></span><span>context loaded</span><span>pass</span></div><div class="demo-status"><span class="status-dot"></span><span>example replayed</span><span>pass</span></div><div class="demo-status demo-invert"><span class="status-dot" style="background:var(--bg)"></span><span>owner accepted</span><span>current</span></div></div></div></div>
+          <div class="example-copy"><h3>handoff sequence</h3><p>передача завершается replay и явным принятием владельцем.</p></div>
+        </article>
+
+        <article class="example" data-kind="state">
+          <div class="example-meta"><b>18 · active</b><span>state</span></div>
+          <div class="preview"><div class="system-map"><div class="map-node"><span class="node-num">1</span><span>queued</span><span class="node-state">12</span></div><div class="map-node active"><span class="node-num">2</span><span>running</span><span class="node-state">current</span></div><div class="map-node"><span class="node-num">3</span><span>review</span><span class="node-state">next</span></div></div></div>
+          <div class="example-copy"><h3>active state</h3><p>инверсия сообщает current, selected, confirmed или focused.</p></div>
+        </article>
+
+        <article class="example" data-kind="state">
+          <div class="example-meta"><b>19 · empty</b><span>state</span></div>
+          <div class="preview"><div class="demo-empty"><div><b>no evidence yet</b><span>first run creates a timestamped row</span><span class="demo-button primary">start run</span></div></div></div>
+          <div class="example-copy"><h3>empty state</h3><p>называет условие появления данных и одно следующее действие.</p></div>
+        </article>
+
+        <article class="example" data-kind="state">
+          <div class="example-meta"><b>20 · loading</b><span>state</span></div>
+          <div class="preview"><div class="demo-frame"><div class="demo-head"><b>◇ loading source map</b><span>12 / 24</span></div><div class="demo-body"><div class="demo-row"><span>current</span><span>transcripts</span></div><div class="demo-row"><span>elapsed</span><span>00:18</span></div><div class="demo-row"><span>next</span><span>rules</span></div></div></div></div>
+          <div class="example-copy"><h3>loading state</h3><p>показывает объект, прогресс, elapsed time и следующий этап.</p></div>
+        </article>
+
+        <article class="example" data-kind="state">
+          <div class="example-meta"><b>21 · error</b><span>state</span></div>
+          <div class="preview"><div class="demo-error"><div class="error-head">✗ sync · failed</div><div class="error-body"><div class="demo-row"><span>cause</span><span>source unavailable</span></div><div class="demo-row"><span>preserved</span><span>local draft</span></div><div style="margin-top:8px"><span class="demo-button primary">retry</span></div></div></div></div>
+          <div class="example-copy"><h3>error state</h3><p>фиксирует cause, preserved state и безопасный recovery action.</p></div>
+        </article>
+
+        <article class="example" data-kind="control">
+          <div class="example-meta"><b>22 · controls</b><span>control</span></div>
+          <div class="preview"><div class="demo-controls"><div class="control-stack"><div class="slider"><span>gain</span><span class="track"></span><span>62</span></div><div class="slider"><span>gate</span><span class="track"></span><span>44</span></div><div class="demo-tabs"><span>silent</span><span class="active">live</span></div></div><div class="monitor">◉</div></div></div>
+          <div class="example-copy"><h3>instrument controls</h3><p>label, range, value и monitor объясняют live-routing.</p></div>
+        </article>
+
+        <article class="example" data-kind="control">
+          <div class="example-meta"><b>23 · form</b><span>control</span></div>
+          <div class="preview"><div class="demo-form"><div class="demo-field"><label>question</label><div>что требует решения?</div></div><div class="demo-field"><label>data window</label><div>last 7 days</div></div><div><span class="demo-button primary">apply</span> <span class="demo-button">reset</span></div></div></div>
+          <div class="example-copy"><h3>bounded form</h3><p>поля повторяют продуктовый контракт и заканчиваются одним primary action.</p></div>
+        </article>
+
+        <article class="example" data-kind="control">
+          <div class="example-meta"><b>24 · live status</b><span>control</span></div>
+          <div class="preview"><div class="demo-frame"><div class="demo-head"><b>instrument</b><span>input · mic 1</span></div><div class="demo-body"><div class="demo-status demo-invert"><span class="status-dot" style="background:var(--bg)"></span><span>gate · open</span><span>live</span></div><div class="demo-status"><span class="status-dot"></span><span>midi · bridge</span><span>ready</span></div><div class="demo-status"><span class="status-dot"></span><span>tail · 4.2s</span><span>active</span></div></div></div></div>
+          <div class="example-copy"><h3>explicit live status</h3><p>показывает, почему система звучит, молчит или ждёт input.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="content">
+    <div class="shell">
+      <div class="section-head">
+        <div class="section-index"><span class="index-dot">6</span><span class="index-label">content</span></div>
+        <div>
+          <h2>контент – часть интерфейса</h2>
+          <p>Текст сообщает state, scope, owner, source и next action. Короткая формулировка выигрывает, когда сохраняет проверяемые детали.</p>
+        </div>
+      </div>
+
+      <table class="copy-table">
+        <thead><tr><th>ситуация</th><th>слабый сигнал</th><th>рабочая формулировка</th><th>что стало видно</th></tr></thead>
+        <tbody>
+          <tr><td>success</td><td>готово!</td><td>sync · complete · 24 files · 14:32</td><td>действие · объём · время</td></tr>
+          <tr><td>loading</td><td>загрузка...</td><td>loading source map · 12 / 24 · 18s</td><td>объект · прогресс · elapsed</td></tr>
+          <tr><td>empty</td><td>ничего нет</td><td>no evidence yet · first run creates a row</td><td>условие появления данных</td></tr>
+          <tr><td>error</td><td>что-то пошло не так</td><td>sync failed · source unavailable · draft preserved</td><td>cause · preserved state</td></tr>
+          <tr><td>button</td><td>продолжить</td><td>publish guide</td><td>конкретный глагол и объект</td></tr>
+          <tr><td>data</td><td>активность</td><td>last 7d · 386 events · refreshed 14m ago</td><td>окно · объём · freshness</td></tr>
+        </tbody>
+      </table>
+
+      <div class="grid-3" style="margin-top:30px">
+        <article class="product-card"><div class="micro">LABELS</div><h3>uppercase сообщает функцию</h3><p>короткие micro-labels: SOURCE, OWNER, DATA WINDOW, LIVE. Основной текст остаётся lowercase.</p></article>
+        <article class="product-card"><div class="micro">ACTIONS</div><h3>verb + object</h3><p>open source, retry sync, publish guide, copy path. Пользователь заранее понимает эффект.</p></article>
+        <article class="product-card"><div class="micro">NUMBERS</div><h3>единица рядом</h3><p>24 files, 14m ago, 93% coverage, W1. Табличные цифры сохраняют ритм.</p></article>
+        <article class="product-card"><div class="micro">STATES</div><h3>состояние текстом</h3><p>live, stale, ready, blocked, silent, partial. Геометрия усиливает явный label.</p></article>
+        <article class="product-card"><div class="micro">ERRORS</div><h3>cause + preserved + recovery</h3><p>сообщение отвечает, что произошло, что сохранено и какое действие безопасно.</p></article>
+        <article class="product-card"><div class="micro">PROVENANCE</div><h3>source + window + time</h3><p>доверие строится из видимого происхождения данных и версии поверхности.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="handoff">
+    <div class="shell">
+      <div class="section-head">
+        <div class="section-index"><span class="index-dot">7</span><span class="index-label">handoff</span></div>
+        <div>
+          <h2>контракт передачи</h2>
+          <p>Заполненный handoff позволяет дизайнеру, продакту или агенту воспроизвести систему без устного контекста. Передача заканчивается replay одного реального сценария.</p>
+        </div>
+      </div>
+
+      <div class="handoff">
+        <div class="handoff-list">
+          <div class="handoff-row"><span class="n">01</span><b>purpose</b><span>какое решение ускоряет поверхность</span></div>
+          <div class="handoff-row"><span class="n">02</span><b>user</b><span>роль, контекст, частота использования</span></div>
+          <div class="handoff-row"><span class="n">03</span><b>question</b><span>один ведущий вопрос экрана</span></div>
+          <div class="handoff-row"><span class="n">04</span><b>action</b><span>одно primary action и его эффект</span></div>
+          <div class="handoff-row"><span class="n">05</span><b>data</b><span>source, window, refresh, owner</span></div>
+          <div class="handoff-row"><span class="n">06</span><b>states</b><span>default, active, empty, loading, error</span></div>
+          <div class="handoff-row"><span class="n">07</span><b>evidence</b><span>что подтверждает успешный outcome</span></div>
+          <div class="handoff-row"><span class="n">08</span><b>limits</b><span>permissions, sensitivity, failure modes</span></div>
+          <div class="handoff-row"><span class="n">09</span><b>breakpoints</b><span>desktop, 760px, 390px, print</span></div>
+          <div class="handoff-row"><span class="n">10</span><b>owner</b><span>кто обновляет продукт и source data</span></div>
+        </div>
+
+        <div class="code-box">
+          <div class="code-head"><span>portable build brief</span><button class="copy" type="button" data-copy="#handoffPrompt">copy brief</button></div>
+          <pre id="handoffPrompt">Build a Shaper product surface.
+
+Purpose:
+User:
+Primary question:
+Primary action:
+Source data:
+Data window:
+Success evidence:
+Owner:
+
+Use:
+- paper #fff, ink #000, soft #d9d9d9
+- JetBrains Mono
+- 1px frames
+- lowercase body
+- uppercase micro-labels at .18em
+- inversion for active state
+- visible source, timestamp and version
+
+Include:
+- header and context
+- status strip
+- main workspace
+- default, active, empty, loading and error states
+- source stamp
+- desktop, 760px, 390px and print behavior
+
+Deliver:
+- one portable HTML file
+- real sample data
+- handoff notes
+- QA checklist</pre>
+        </div>
+      </div>
+
+      <div style="margin-top:34px">
+        <div class="section-kicker" style="margin-bottom:14px">BUILD SEQUENCE · 45–90 MINUTES</div>
+        <div class="build-steps">
+          <div class="build-step"><b>write one primary question</b><span>product</span></div>
+          <div class="build-step"><b>name source, window and owner</b><span>trust</span></div>
+          <div class="build-step"><b>select one archetype</b><span>scope</span></div>
+          <div class="build-step"><b>draw the five-layer anatomy</b><span>structure</span></div>
+          <div class="build-step"><b>paste core tokens</b><span>visual</span></div>
+          <div class="build-step"><b>build the default state</b><span>flow</span></div>
+          <div class="build-step"><b>add active via inversion</b><span>state</span></div>
+          <div class="build-step"><b>add empty, loading and error</b><span>resilience</span></div>
+          <div class="build-step"><b>add one realistic data set</b><span>evidence</span></div>
+          <div class="build-step"><b>test 390px and keyboard</b><span>access</span></div>
+          <div class="build-step"><b>attach source stamp</b><span>provenance</span></div>
+          <div class="build-step"><b>replay with the next owner</b><span>transfer</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="qa">
+    <div class="shell">
+      <div class="section-head">
+        <div class="section-index"><span class="index-dot">8</span><span class="index-label">qa</span></div>
+        <div>
+          <h2>definition of done</h2>
+          <p>Продукт, дизайн и переносимость проверяются отдельно. Один провал оставляет поверхность в draft.</p>
+        </div>
+      </div>
+
+      <div class="qa-grid">
+        <section class="checklist">
+          <h3>product</h3>
+          <ul>
+            <li>ведущий вопрос записан одной строкой</li>
+            <li>primary action имеет понятный эффект</li>
+            <li>data window и freshness видны</li>
+            <li>empty, loading и error помогают продолжить</li>
+            <li>success подтверждается evidence</li>
+            <li>owner и lifecycle названы</li>
+          </ul>
+        </section>
+        <section class="checklist">
+          <h3>design</h3>
+          <ul>
+            <li>paper #fff и ink #000 составляют основу</li>
+            <li>все structural frames имеют 1px</li>
+            <li>body lowercase, micro-labels uppercase</li>
+            <li>active state использует инверсию</li>
+            <li>сетка читается при высокой плотности</li>
+            <li>цвет имеет явную семантику, если добавлен</li>
+          </ul>
+        </section>
+        <section class="checklist">
+          <h3>transfer</h3>
+          <ul>
+            <li>артефакт открывается без build step</li>
+            <li>токены и реальные примеры доступны</li>
+            <li>desktop, 760px, 390px и print проверены</li>
+            <li>keyboard focus остаётся видимым</li>
+            <li>source stamp содержит версию и дату</li>
+            <li>следующий owner повторил один сценарий</li>
+          </ul>
+        </section>
+      </div>
+
+      <div style="margin-top:30px" class="grid-2">
+        <div class="product-card">
+          <div class="micro">30-SECOND TEST</div>
+          <h3>покажи экран без объяснения</h3>
+          <p>человек должен назвать текущий state, главное действие и source data за 30 секунд.</p>
+        </div>
+        <div class="product-card">
+          <div class="micro">TRANSFER TEST</div>
+          <h3>убери автора на одну неделю</h3>
+          <p>следующий owner должен обновить данные, воспроизвести flow и оставить новый evidence row.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="shell end-note">
+    <div>
+      <h2>один вопрос · одно состояние · один след</h2>
+      <p>Скопируй этот файл, замени product contract и реальные данные, оставь токены, state grammar, handoff и QA. Так Shaper остаётся узнаваемым и пригодным для работы.</p>
+      <a class="back-top" href="#main">↑ back to top</a>
+    </div>
+    <div class="end-stamp">fig. 01<br>design + product guide<br>AIN3 · 2026-07-14</div>
+  </footer>
+</main>
+
+<div class="real-modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="real-dialog">
+    <div class="dialog-head"><span id="modalTitle">◆ detail layer · example</span><button class="close" type="button" aria-label="закрыть">×</button></div>
+    <div class="dialog-body">
+      <div class="demo-row"><span>purpose</span><span>inspect without losing context</span></div>
+      <div class="demo-row"><span>source</span><span>selected item</span></div>
+      <div class="demo-row"><span>close routes</span><span>button · backdrop · esc</span></div>
+    </div>
+  </div>
+</div>
+<div id="toast" role="status" aria-live="polite">copied</div>
+
+<script>
+(function(){
+  var toast = document.getElementById('toast');
+  var toastTimer;
+
+  function showToast(message){
+    toast.textContent = message;
+    toast.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('on'); }, 1400);
+  }
+
+  function copyText(text){
+    if(navigator.clipboard && window.isSecureContext){
+      return navigator.clipboard.writeText(text);
+    }
+    var area = document.createElement('textarea');
+    area.value = text;
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand('copy');
+    area.remove();
+    return Promise.resolve();
+  }
+
+  document.querySelectorAll('[data-copy]').forEach(function(button){
+    button.addEventListener('click', function(){
+      var target = document.querySelector(button.getAttribute('data-copy'));
+      if(!target) return;
+      copyText(target.textContent.trim()).then(function(){
+        showToast('copied · ready to transfer');
+      });
+    });
+  });
+
+  var filters = document.querySelectorAll('[data-filter]');
+  var examples = document.querySelectorAll('.example');
+  filters.forEach(function(button){
+    button.addEventListener('click', function(){
+      var kind = button.getAttribute('data-filter');
+      filters.forEach(function(item){ item.classList.toggle('active', item === button); });
+      examples.forEach(function(card){
+        card.hidden = kind !== 'all' && card.getAttribute('data-kind') !== kind;
+      });
+      showToast(kind === 'all' ? 'showing · 24 examples' : 'filter · ' + kind);
+    });
+  });
+
+  var modal = document.getElementById('modal');
+  var modalClose = modal.querySelector('.close');
+  function closeModal(){ modal.classList.remove('open'); }
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(event){ if(event.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(event){ if(event.key === 'Escape') closeModal(); });
+
+  var modalExample = Array.prototype.find.call(document.querySelectorAll('.example'), function(card){
+    return card.querySelector('.example-copy h3') && card.querySelector('.example-copy h3').textContent === 'detail modal';
+  });
+  if(modalExample){
+    modalExample.style.cursor = 'pointer';
+    modalExample.setAttribute('tabindex','0');
+    modalExample.setAttribute('aria-label','открыть пример detail modal');
+    modalExample.addEventListener('click', function(){ modal.classList.add('open'); modalClose.focus(); });
+    modalExample.addEventListener('keydown', function(event){
+      if(event.key === 'Enter' || event.key === ' '){ event.preventDefault(); modal.classList.add('open'); modalClose.focus(); }
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -13,6 +13,7 @@
   <a href="https://ai-mindset-org.github.io/ainative-lab-3/">hub</a> ·
   <a href="https://ai-mindset-org.github.io/ainative-lab-3/graph/">graph</a> ·
   <a href="https://ai-mindset-org.github.io/ainative-lab-3/starter-pack/naming/">naming builder</a> ·
+  <a href="https://ai-mindset-org.github.io/ainative-lab-3/shaper/">shaper guide</a> ·
   <a href="https://ai-mindset-org.github.io/ainative-deck/decks/ain3-personal-setup/">deck</a> ·
   <a href="https://learn.aimindset.org/ain3">lms</a>
 </p>
@@ -21,7 +22,7 @@
 
 ## Что это
 
-Рабочие поверхности лабы AIN3 – всё, что участник уносит с собой после сессии «мой персональный harness»: карта системы, конвенции, правила, шаблоны и два стартовых скилла.
+Рабочие поверхности лабы AIN3 – всё, что участник уносит с собой после сессии «мой персональный harness»: карта системы, конвенции, правила, шаблоны, два стартовых скилла и переносимый design + product guide.
 
 Ядро метода: **один процесс · один контекст · один прогон · один след.**
 
@@ -41,6 +42,7 @@ ainative-lab-3/
 ├── naming-convention.md  конвенция про конвенции: грамматика, типы, анти-паттерны, мета-правило
 ├── presentation.md       структура деки (18 секций) + карта хранения всех поверхностей
 ├── graph/                интерактивная карта harness – 39 узлов, 72 связи, 6 категорий
+├── shaper/               design + product guide – эталонный экран, 24 живых примера, handoff, QA
 ├── data/manifest.json    данные графа
 ├── assets/               логотип AIM, обложка
 └── starter-pack/         переносимый participant kit:
