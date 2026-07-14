@@ -1,0 +1,58 @@
+# CLAUDE.md – workspace router
+
+> Claude Code reads this file before the first task. Keep the router concise. Put repeatable procedures in `.claude/skills/` and working data in the folders below.
+
+## Operator
+
+- Role: {one sentence}
+- Main language: {Russian / English}
+- Primary timezone: {Europe/Lisbon}
+- Current process: {one repeatable process}
+- Desired result: {one observable output}
+
+## Communication
+
+- Start with the main point.
+- Keep answers concise and concrete.
+- Use en dash (–), U+2013.
+- Surface assumptions and blockers.
+
+## File naming
+
+- New working files: `{project} {type} description – YYYY-MM-DD.ext`.
+- Description: latin, lower case, 2–6 words.
+- Date: at the end. Separator: en dash (–).
+- Allowed types: brief, meeting, research, analysis, process, context, decision, output, log, draft, rule, template, skill, handoff, registry, dataset.
+- Runtime files keep fixed names: `README.md`, `AGENTS.md`, `CLAUDE.md`, `SKILL.md`.
+- The agent checks existing siblings before creating a file.
+
+## Workspace map
+
+- `sources/` – approved inputs for the current process.
+- `output/` – observable results of each run.
+- `evidence-log.md` – one line per run: result, gap, system update.
+- `.claude/skills/` – repeatable procedures.
+- `private/` – local-only material. Never include it in public or team output.
+
+## Definition of done
+
+{A measurable quality contract. Example: “The lead reads the status in two minutes; every factual claim links to a source; the result fits one page.”}
+
+## Autonomy boundaries
+
+- `public` – sanitized and publishable; agent may prepare and update local files.
+- `team` – internal working material; agent may prepare, operator reviews distribution.
+- `local` – stays on this device.
+- `external` – sanctioned partner or service source with explicit purpose and owner.
+- `ask first` – sending to people, publishing, deleting, spending money, changing permissions.
+- `deny` – secrets, unsafe writes and silent outbound actions.
+
+## Continuity
+
+At the end of a meaningful run, update `evidence-log.md` with:
+
+```text
+date · result · evidence · gap · next system change
+```
+
+The next session starts from the latest output and evidence line.
