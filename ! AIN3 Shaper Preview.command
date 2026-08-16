@@ -1,7 +1,7 @@
 #!/bin/zsh
 set -e
 
-ROOT="~/Documents/_code/_dashboards/ainative-lab-3"
+ROOT="$(cd "$(dirname "$0")" && pwd)"
 PORT=4173
 
 while lsof -nP -iTCP:"$PORT" -sTCP:LISTEN >/dev/null 2>&1; do
