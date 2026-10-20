@@ -1,3 +1,7 @@
+<!-- aim-public-links:start -->
+[Лабы AI Mindset](https://aimindset.org/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-ainative-lab-3#learning) · [База знаний](https://base.aimindset.org/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-ainative-lab-3)
+<!-- aim-public-links:end -->
+
 <p align="center">
   <img src="assets/web-cover.png" alt="AIN3 · personal harness – portable public kit" width="100%">
 </p>
@@ -10,12 +14,12 @@
 </p>
 
 <p align="center">
-  <a href="https://ai-mindset-org.github.io/ainative-lab-3/">hub</a> ·
-  <a href="https://ai-mindset-org.github.io/ainative-lab-3/graph/">graph</a> ·
-  <a href="https://ai-mindset-org.github.io/ainative-lab-3/starter-pack/naming/">naming builder</a> ·
-  <a href="https://ai-mindset-org.github.io/ainative-lab-3/shaper/">shaper guide</a> ·
-  <a href="https://ai-mindset-org.github.io/ainative-deck/decks/ain3-personal-setup/">deck</a> ·
-  <a href="https://learn.aimindset.org/ain3">lms</a>
+  <a href="https://ai-mindset-org.github.io/ainative-lab-3/?utm_source=website&amp;utm_medium=article&amp;utm_campaign=start&amp;utm_content=github-ainative-lab-3">hub</a> ·
+  <a href="https://ai-mindset-org.github.io/ainative-lab-3/graph/?utm_source=website&amp;utm_medium=article&amp;utm_campaign=start&amp;utm_content=github-ainative-lab-3">graph</a> ·
+  <a href="https://ai-mindset-org.github.io/ainative-lab-3/starter-pack/naming/?utm_source=website&amp;utm_medium=article&amp;utm_campaign=start&amp;utm_content=github-ainative-lab-3">naming builder</a> ·
+  <a href="https://ai-mindset-org.github.io/ainative-lab-3/shaper/?utm_source=website&amp;utm_medium=article&amp;utm_campaign=start&amp;utm_content=github-ainative-lab-3">shaper guide</a> ·
+  <a href="https://ai-mindset-org.github.io/ainative-deck/decks/ain3-personal-setup/?utm_source=website&amp;utm_medium=article&amp;utm_campaign=start&amp;utm_content=github-ainative-lab-3">deck</a> ·
+  <a href="https://learn.aimindset.org/ain3?utm_source=website&amp;utm_medium=article&amp;utm_campaign=start&amp;utm_content=github-ainative-lab-3">lms</a>
 </p>
 
 ---
@@ -60,10 +64,10 @@ ainative-lab-3/
 
 `context` – что агент знает до задачи · `memory` – что переживает сессию · `guardrail` – границы и паспорта · `review` – проверяемый след · `naming` – адресация · `communication` – люди и агенты в одном контуре.
 
-Каждая зона раскрыта в [operating-rules.md](operating-rules.md); связи между ними видны в [графе](https://ai-mindset-org.github.io/ainative-lab-3/graph/).
+Каждая зона раскрыта в [operating-rules.md](operating-rules.md); связи между ними видны в [графе](https://ai-mindset-org.github.io/ainative-lab-3/graph/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-ainative-lab-3).
 
 ## Provenance
 
-Конденсат операционного опыта [AI Mindset](https://aimindset.org) 2024–2026: 200+ production-скиллов, 13K+ заметок в Obsidian, кросс-инструментный синк Claude Code ↔ Codex, evidence-петля на каждый содержательный ответ. Всё в этом репозитории проверено эксплуатацией.
+Конденсат операционного опыта [AI Mindset](https://aimindset.org?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-ainative-lab-3) 2024–2026: 200+ production-скиллов, 13K+ заметок в Obsidian, кросс-инструментный синк Claude Code ↔ Codex, evidence-петля на каждый содержательный ответ. Всё в этом репозитории проверено эксплуатацией.
 
 Делитесь свободно, упоминайте AIM, если помогло.
