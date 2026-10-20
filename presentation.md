@@ -6,11 +6,11 @@
 
 | Слой | Адрес | Роль |
 |---|---|---|
-| Публичная дека | [ai-mindset-org.github.io/ainative-deck/decks/ain3-personal-setup](https://ai-mindset-org.github.io/ainative-deck/decks/ain3-personal-setup/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-ainative-lab-3) | версия для участников, GitHub Pages |
+| Публичная дека | https://ai-mindset-org.github.io/ainative-deck/decks/ain3-personal-setup/ | версия для участников, GitHub Pages |
 | Репозиторий деки | https://github.com/ai-mindset-org/ainative-deck | источник, ветка main, история в git log |
 | Starter pack | https://github.com/ai-mindset-org/ainative-deck/tree/main/ain3-starter-pack | переносимый participant kit + ZIP |
-| Хаб лабы | [ai-mindset-org.github.io/ainative-lab-3](https://ai-mindset-org.github.io/ainative-lab-3/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-ainative-lab-3) | этот репозиторий: graph · naming · rules · pack |
-| LMS | [learn.aimindset.org/ain3](https://learn.aimindset.org/ain3?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-ainative-lab-3) | записи и материалы потока |
+| Хаб лабы | https://ai-mindset-org.github.io/ainative-lab-3/ | этот репозиторий: graph · naming · rules · pack |
+| LMS | https://learn.aimindset.org/ain3 | записи и материалы потока |
 
 Локальная сборка идёт в git-worktree с live-preview; правки со сцены (режим E) сохраняются через локальный save-server прямо в git – презентация сама живёт по правилам harness: адрес, история, след.
 
