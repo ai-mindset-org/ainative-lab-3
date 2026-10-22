@@ -18,3 +18,4 @@ SESSION-*-HANDOFF.md
 .env.*
 !.env.example
 .DS_Store
+.worktrees/

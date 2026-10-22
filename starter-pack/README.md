@@ -26,7 +26,7 @@
 | [`naming/`](naming/) | собрать canonical filename для personal, team и model-data контуров |
 | [`playground/`](playground/) | скомпилировать сырой процесс в компактный context pack и скачать Markdown |
 | [`graph/`](graph/) | пройти Harness Atlas: люди, артефакты, skills, маршруты и evidence |
-| [публичный дек](https://ai-mindset-org.github.io/ainative-deck/decks/ain3-personal-setup/) | 18 слайдов, кликабельный процесс и заметки спикера |
+| [публичный дек](https://ai-mindset-org.github.io/ainative-deck/decks/ain3-personal-setup/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-ainative-lab-3) | 18 слайдов, кликабельный процесс и заметки спикера |
 
 ## Маршрут
 
@@ -86,4 +86,4 @@ my-workspace/
 
 **Один процесс → один контекст → один прогон → один evidence-сигнал.** Следующий прогон становится лучше через правку источников, правил или skill.
 
-AI Mindset · [программа AIN3](https://ai-native.aimindset.org/) · [public site](https://ai-mindset-org.github.io/ainative-lab-3/) · [публичный дек](https://ai-mindset-org.github.io/ainative-deck/decks/ain3-personal-setup/)
+AI Mindset · [программа AIN3](https://ai-native.aimindset.org/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-ainative-lab-3) · [public site](https://ai-mindset-org.github.io/ainative-lab-3/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-ainative-lab-3) · [публичный дек](https://ai-mindset-org.github.io/ainative-deck/decks/ain3-personal-setup/?utm_source=website&utm_medium=article&utm_campaign=start&utm_content=github-ainative-lab-3)
